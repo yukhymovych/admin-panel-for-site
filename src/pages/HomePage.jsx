@@ -21,7 +21,6 @@ const HomePage = (props) => {
          <Blog 
             articles={props.articles}
             blogBtn={props.blogBtn}
-            // setPostData={props.setPostData}
          />
       </>
    );

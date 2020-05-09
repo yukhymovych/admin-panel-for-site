@@ -16,9 +16,9 @@ import {
 
 const AdminPanelBlog = (props) => {
    const [articles, setArticles] = useState(props.articles);
-  
+
    const deleteArticle = (article) => {
-      let newArray = props.articles;
+      let newArray = [...props.articles];
 
       for (let i = 0; i < newArray.length; i++) {
          if (newArray[i].id === article.id) {
@@ -31,7 +31,7 @@ const AdminPanelBlog = (props) => {
    }
 
    const addNewArticle = () => {
-      let newArray = props.articles;
+      let newArray = [...props.articles];
       let newPost = {
          id: props.articles.length + 1,
          header: document.getElementById("newPostTitle").value,
