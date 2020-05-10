@@ -1,7 +1,7 @@
-import Hero from '../page-components/Hero';
-import About from '../page-components/About';
-import Portfolio from '../page-components/Portfolio';
-import Blog from '../page-components/Blog';
+import Hero from '../page-components/HeroSection';
+import AboutSection from '../page-components/AboutSection';
+import PortfolioSection from '../page-components/PortfolioSection';
+import BlogSection from '../page-components/BlogSection';
 
 import React from 'react';
 
@@ -12,13 +12,14 @@ const HomePage = (props) => {
             header={props.header}
             subheader={props.subheader}
          />
-         <About 
+         <AboutSection 
             about={props.about}
          />
-         <Portfolio 
+         <PortfolioSection
+            portfolio={props.portfolio}
             portfolioBtn={props.portfolioBtn}
          />
-         <Blog 
+         <BlogSection 
             articles={props.articles}
             blogBtn={props.blogBtn}
          />

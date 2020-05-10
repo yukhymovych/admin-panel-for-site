@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminPanelBlog from './AdminPanelBlog';
+import APBlog from './admin-panel/APBlog';
 import {
    BrowserRouter as Router,
    Switch,
@@ -139,7 +139,7 @@ const AdminPanel = (props) => {
 
                   <Route path="/admin/blog" 
                      render={() => 
-                        <AdminPanelBlog 
+                        <APBlog 
                            articles={props.articles}
                            changeArticles={props.changeArticles}
                         />

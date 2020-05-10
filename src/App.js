@@ -34,6 +34,36 @@ function App() {
       setAbout(newAbout);
    }
 
+   const [portfolio, setPortfolio] = useState([
+      {
+         id: 1,
+         imgSrc: "img/2.jpg",
+         title: "Project 1",
+         description: "Short description for this project. Just everal sentences"
+      },
+      {
+         id: 2,
+         imgSrc: "img/3.jpg",
+         title: "Project 2",
+         description: "Short description for this project. Just everal sentences"
+      },
+      {
+         id: 3,
+         imgSrc: "img/4.jpg",
+         title: "Project 3",
+         description: "Short description for this project. Just everal sentences"
+      },
+      {
+         id: 4,
+         imgSrc: "img/5.jpg",
+         title: "Project 4",
+         description: "Short description for this project. Just everal sentences"
+      },
+   ]);
+   const changePortfolio = (newPortfolio) => {
+      setPortfolio(newPortfolio);
+   }
+
    const [articles, setArticles] = useState([
       {
          id: 1,
@@ -104,6 +134,7 @@ function App() {
 
                         about={about}
 
+                        portfolio={portfolio}
                         portfolioBtn={additionalInfo.portfolioBtn}
 
                         articles={articlesForHome()}
@@ -114,7 +145,8 @@ function App() {
 
                <Route path="/portfolio"
                   render={() =>
-                     <PortfolioPage 
+                     <PortfolioPage
+                        portfolio={portfolio}
                         portfolioBtn={additionalInfo.portfolioBtn}
                      />
                   }

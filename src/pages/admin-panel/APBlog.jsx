@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AdminPanelPostEditPage from './AdminPanelPostEditPage';
-import AdminPanelBlogPost from './AdminPanelBlogPost';
+import APBlogItemEdit from './APBlogItemEdit';
+import APBlogItem from './APBlogItem';
 import {
    BrowserRouter as Router,
    Switch,
@@ -56,7 +56,7 @@ const AdminPanelBlog = (props) => {
                      {
                         articles.map((item) => {
                            return (
-                              <AdminPanelBlogPost
+                              <APBlogItem
                                  key={item.id}
                                  item={item}
                                  deleteArticle={deleteArticle}
@@ -107,7 +107,7 @@ const AdminPanelBlog = (props) => {
 
             <Route path="/admin/blog/:name"
                render={(props2) =>
-                  <AdminPanelPostEditPage 
+                  <APBlogItemEdit 
                      articles={props.articles}
                      changeArticles={props.changeArticles}
                      general={props2}

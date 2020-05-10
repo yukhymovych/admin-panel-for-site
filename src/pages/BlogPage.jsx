@@ -1,13 +1,12 @@
-import Blog from '../page-components/Blog';
-import PostPage from '../pages/PostPage.jsx';
+import BlogSection from '../page-components/BlogSection';
+import BlogOpenedItem from '../page-components/BlogOpenedItem.jsx';
 
 import React from 'react';
 
 import {
    BrowserRouter as Router,
    Switch,
-   Route,
-   Link
+   Route
 } from "react-router-dom";
 
 const BlogPage = (props) => {
@@ -16,7 +15,7 @@ const BlogPage = (props) => {
          <Switch>
             <Route exact path="/blog/"
                render={() =>
-                  <Blog 
+                  <BlogSection 
                      articles={props.articles}
                      blogBtn={props.blogBtn}
                   />
@@ -25,7 +24,7 @@ const BlogPage = (props) => {
 
             <Route path="/blog/:name"
                render={(props2) =>
-                  <PostPage 
+                  <BlogOpenedItem 
                      articles={props.articles}
                      general={props2}
                   />
