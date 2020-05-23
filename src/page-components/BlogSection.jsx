@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const Blog = (props) => {
+const BlogSection = (props) => {
+   const showBtn = () => {
+      if (props.showBtn) {
+         return (
+            <Link className="link section__btn" to="/blog">{props.blogBtn}</Link>
+         );
+      }
+   }
+
    return (
       <section className="section blog section--darker">
          <div className="wrapper">
@@ -20,10 +28,10 @@ const Blog = (props) => {
                   })
                }
             </div>
-            <a className="link section__btn" href="/blog">{props.blogBtn}</a>
+            {showBtn()}
          </div>
       </section>
    );
 }
 
-export default Blog;
+export default BlogSection;

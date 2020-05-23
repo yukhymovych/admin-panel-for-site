@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const Portfolio = (props) => {
+const PortfolioSection = (props) => {
+   const showBtn = () => {
+      if (props.showBtn === true) {
+         return (
+            <Link className="link section__btn centered-btn" to="/portfolio">{props.portfolioBtn}</Link>
+         );
+      }
+   }
+
    return (
       <section className="section portfolio">
          <div className="wrapper">
@@ -19,10 +27,10 @@ const Portfolio = (props) => {
                   })
                }
             </div>
-            <a className="link section__btn centered-btn" href="/">{props.portfolioBtn}</a>
+            {showBtn()}
          </div>
       </section>
    );
 }
 
-export default Portfolio;
+export default PortfolioSection;

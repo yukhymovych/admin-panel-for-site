@@ -43,7 +43,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body {
    font-family: 'Roboto', serif;
    overflow-x: hidden;
- }
+}
 
 .link{
    text-decoration: none;
@@ -411,4 +411,20 @@ footer{
    margin-bottom: 80px;
    font-size: 19px;
    color: #444;
+}
+
+/*/////////////////////////////////////////////////////*/
+.portfolio__imgs{
+
+}
+.portfolio__imgs img{
+   cursor: pointer;
+   height: 100px;
+   width: 100px;
+   object-fit: cover;
+   margin: 0 10px 0 0;
+   transition: 0.3s;
+}
+.portfolio__imgs img:hover{
+   opacity: 0.6;
 }

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import APPortfolio from './admin-panel/APPortfolio';
 import APBlog from './admin-panel/APBlog';
 import {
    BrowserRouter as Router,
@@ -9,11 +10,23 @@ import {
 
 import {
    Button, 
-   TextField
+   TextField,
+   Switch as Switcher
 } from '@material-ui/core';
 
 
+
+
 const AdminPanel = (props) => {
+   const [darkMode, setMode] = useState({
+      state: props.darkThemeSwitcher
+   });
+
+   const handleChange = (event) => {
+      setMode({ state: event.target.checked });
+      props.changeTheme(event.target.checked);
+   };
+
    const saveHero = () => {
       let newHero = {
          homeHeader: document.getElementById("homeHeroHeader").value,
@@ -48,6 +61,14 @@ const AdminPanel = (props) => {
          <div className="wrapper admin__wrapper">
             <div className="admin__sidebar">
                <p className="admin__naming">Admin Panel</p>
+               <span className="admin__dark-mode">Dark mode</span>
+               <Switcher
+                  checked={darkMode.state}
+                  onChange={handleChange}
+                  color="primary"
+                  name="darkModeSwitcher"
+                  inputProps={{ 'aria-label': 'primary checkbox' }}
+               />
                <Link className="link admin__link" to="/admin/hero">Hero</Link>
                <Link className="link admin__link" to="/admin/about">About</Link>
                <Link className="link admin__link" to="/admin/portfolio">Portfolio</Link>
@@ -63,9 +84,8 @@ const AdminPanel = (props) => {
                            <TextField
                               id="homeHeroHeader"
                               label="Header"
-                              multiline
-                              rows={2}
                               defaultValue={props.hero.homeHeader}
+                              key={1}
                               fullWidth="true"
                               variant="outlined"
                            />
@@ -74,8 +94,9 @@ const AdminPanel = (props) => {
                               id="homeHeroSubheader"
                               label="Subheader"
                               multiline
-                              rows={4}
+                              rows={10}
                               defaultValue={props.hero.homeSubheader}
+                              key={2}
                               fullWidth="true"
                               variant="outlined"
                            />
@@ -92,9 +113,8 @@ const AdminPanel = (props) => {
                            <TextField
                               id="aboutHeader"
                               label="Header"
-                              multiline
-                              rows={2}
                               defaultValue={props.about.aboutHeader}
+                              key={3}
                               fullWidth="true"
                               variant="outlined"
                            />
@@ -105,6 +125,7 @@ const AdminPanel = (props) => {
                               multiline
                               rows={10}
                               defaultValue={props.about.aboutText}
+                              key={4}
                               fullWidth="true"
                               variant="outlined"
                            />
@@ -114,28 +135,15 @@ const AdminPanel = (props) => {
                      </div>
                   </Route>
 
-                  <Route path="/admin/portfolio">
-                     <div className="admin__item">
-                        <div className="admin__item-inner">
-                           <h3 className="admin__header">Portfolio</h3>
-                           <TextField
-                              label="Name"
-                              fullWidth="true"
-                              variant="outlined"
-                           />
-                           <br/><br/>
-                           <TextField
-                              label="Description"
-                              fullWidth="true"
-                              multiline
-                              rows={3}
-                              variant="outlined"
-                           />
-                           <br/><br/>
-                           <Button variant="contained" color="primary">Save changes</Button>
-                        </div>
-                     </div>
-                  </Route>
+                  <Route path="/admin/portfolio" 
+                     render={() => 
+                        <APPortfolio
+                           portfolio={props.portfolio}
+                           changePortfolio={props.changePortfolio}
+                           createId={props.createId}
+                        />
+                     }
+                  />
 
                   <Route path="/admin/blog" 
                      render={() => 
@@ -154,6 +162,7 @@ const AdminPanel = (props) => {
                               id="headerLogoText"
                               label="Website logo text"
                               defaultValue={props.additionalInfo.headerLogoText}
+                              key={5}
                               fullWidth="true"
                               variant="outlined"
                            />
@@ -162,6 +171,7 @@ const AdminPanel = (props) => {
                               id="footerText"
                               label="Footer text"
                               defaultValue={props.additionalInfo.footerText}
+                              key={6}
                               fullWidth="true"
                               variant="outlined"
                            />
@@ -170,6 +180,7 @@ const AdminPanel = (props) => {
                               id="portfolioBtn"
                               label="Portfolio button text"
                               defaultValue={props.additionalInfo.portfolioBtn}
+                              key={7}
                               variant="outlined"
                            />
                            <br/><br/>
@@ -177,6 +188,7 @@ const AdminPanel = (props) => {
                               id="blogBtn"
                               label="Blog button text"
                               defaultValue={props.additionalInfo.blogBtn}
+                              key={8}
                               variant="outlined"
                            />
                            <br/><br/>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hero = (props) => {
+const HeroSection = (props) => {
    return (
       <section className="section hero">
          <div className="wrapper">
@@ -11,4 +11,4 @@ const Hero = (props) => {
    );
 }
 
-export default Hero;
+export default HeroSection;

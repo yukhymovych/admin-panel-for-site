@@ -1,25 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
    Button, 
    TextField
 } from '@material-ui/core';
 
-const AdminPanelPostEditPage = (props) => {
+const APBlogItemEdit = (props) => {
+   const [editedArticle, setEditedArticle] = useState({
+      id: props.article.id,
+      header: props.article.header,
+      summary: props.article.summary,
+      date: props.article.date,
+      text: props.article.text
+   });
 
-   const saveChanges = (article) => {
-      let newArray = props.articles;
-      let newArticle = {
-         id: article.id,
-         header: document.getElementById("articleTitle").value,
-         summary: document.getElementById("articleSummary").value,
-         date: document.getElementById("articleDate").value,
-         text: document.getElementById("articleText").value,
-      };
+   const handleTitleInput = (e) => {
+      setEditedArticle({
+         id: editedArticle.id,
+         header: e.target.value,
+         summary: editedArticle.summary,
+         date: editedArticle.date,
+         text: editedArticle.text
+      });
+   }
+
+   const handleSummaryInput = (e) => {
+      setEditedArticle({
+         id: editedArticle.id,
+         header: editedArticle.header,
+         summary: e.target.value,
+         date: editedArticle.date,
+         text: editedArticle.text
+      });
+   }
+
+   const handleDateInput = (e) => {
+      setEditedArticle({
+         id: editedArticle.id,
+         header: editedArticle.header,
+         summary: editedArticle.summary,
+         date: e.target.value,
+         text: editedArticle.text
+      });
+   }
+
+   const handleTextInput = (e) => {
+      setEditedArticle({
+         id: editedArticle.id,
+         header: editedArticle.header,
+         summary: editedArticle.summary,
+         date: editedArticle.date,
+         text: e.target.value
+      });
+   }
+
+   const saveChanges = (initialArticle) => {
+      let newArray = [...props.articles];
 
       for (let i = 0; i < newArray.length; i++) {
-         if (newArray[i].id === article.id) {
-            newArray.splice(i, 1, newArticle);
+         if (newArray[i].id === initialArticle.id) {
+            newArray.splice(i, 1, editedArticle);
 
             props.changeArticles(newArray);
          }
@@ -28,52 +68,44 @@ const AdminPanelPostEditPage = (props) => {
 
    return (
       <div className="admin__item">
-         {
-            props.articles.map((item) => {
-               if (item.header === props.general.match.params.name){
-                  return(
-                     <>
-                        <TextField
-                           id="articleTitle"
-                           label="Title"
-                           rows={2}
-                           defaultValue={item.header}
-                           fullWidth="true"
-                           variant="outlined"
-                        />
-                        <TextField
-                           id="articleSummary"
-                           label="Summary"
-                           rows={4}
-                           defaultValue={item.summary}
-                           fullWidth="true"
-                           variant="outlined"
-                        />
-                        <TextField
-                           id="articleDate"
-                           label="Date"
-                           rows={2}
-                           defaultValue={item.date}
-                           fullWidth="true"
-                           variant="outlined"
-                        />
-                        <TextField
-                           id="articleText"
-                           label="Text"
-                           multiline
-                           rows={15}
-                           defaultValue={item.text}
-                           fullWidth="true"
-                           variant="outlined"
-                        />
-                        <Button variant="contained" color="primary" onClick={() => saveChanges(item)}>Save changes</Button>
-                     </>
-                  )
-               }
-            })
-         }
+         <>
+            <TextField
+               label="Title"
+               rows={2}
+               defaultValue={props.article.header}
+               fullWidth="true"
+               variant="outlined"
+               onChange={handleTitleInput}
+            />
+            <TextField
+               label="Summary"
+               rows={4}
+               defaultValue={props.article.summary}
+               fullWidth="true"
+               variant="outlined"
+               onChange={handleSummaryInput}
+            />
+            <TextField
+               label="Date"
+               rows={2}
+               defaultValue={props.article.date}
+               fullWidth="true"
+               variant="outlined"
+               onChange={handleDateInput}
+            />
+            <TextField
+               label="Text"
+               multiline
+               rows={15}
+               defaultValue={props.article.text}
+               fullWidth="true"
+               variant="outlined"
+               onChange={handleTextInput}
+            />
+            <Button variant="contained" color="primary" onClick={() => saveChanges(props.article)}>Save changes</Button>
+         </>
       </div>
    );
 }
 
-export default AdminPanelPostEditPage;
+export default APBlogItemEdit;

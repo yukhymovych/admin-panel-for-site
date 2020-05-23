@@ -8,14 +8,64 @@ import {
    Link
 } from "react-router-dom";
 
+import { createId } from '../../logic/func.js';
+
 import { 
    Button,
    TextField
 } from '@material-ui/core';
 
 
-const AdminPanelBlog = (props) => {
+const APBlog = (props) => {
    const [articles, setArticles] = useState(props.articles);
+   const [article, setArticle] = useState(0);
+   const [newArticle, setNewArticle] = useState({
+      id: createId(),
+      header: "",
+      summary: "",
+      date: "",
+      text: ""
+   });
+
+   const handleTitleInput = (e) => {
+      setNewArticle({
+         id: newArticle.id,
+         header: e.target.value,
+         summary: newArticle.summary,
+         date: newArticle.date,
+         text: newArticle.text
+      });
+   }
+
+   const handleSummaryInput = (e) => {
+      setNewArticle({
+         id: newArticle.id,
+         header: newArticle.header,
+         summary: e.target.value,
+         date: newArticle.date,
+         text: newArticle.text
+      });
+   }
+
+   const handleDateInput = (e) => {
+      setNewArticle({
+         id: newArticle.id,
+         header: newArticle.header,
+         summary: newArticle.summary,
+         date: e.target.value,
+         text: newArticle.text
+      });
+   }
+
+   const handleTextInput = (e) => {
+      setNewArticle({
+         id: newArticle.id,
+         header: newArticle.header,
+         summary: newArticle.summary,
+         date: newArticle.date,
+         text: e.target.value
+      });
+   }
 
    const deleteArticle = (article) => {
       let newArray = [...props.articles];
@@ -32,18 +82,19 @@ const AdminPanelBlog = (props) => {
 
    const addNewArticle = () => {
       let newArray = [...props.articles];
-      let newPost = {
-         id: props.articles.length + 1,
-         header: document.getElementById("newPostTitle").value,
-         summary: document.getElementById("newPostSummary").value,
-         date: document.getElementById("newPostDate").value,
-         text: document.getElementById("newPostText").value,
-      };
 
-      newArray.push(newPost);
+      newArray.push(newArticle);
       
       setArticles(newArray);
       props.changeArticles(newArray);
+   }
+
+   const callEditingArticle = (articleId) => {
+      articles.map((item) => {
+         if(item.id === articleId) {
+            setArticle(item);
+         }
+      });
    }
 
    return (
@@ -60,6 +111,7 @@ const AdminPanelBlog = (props) => {
                                  key={item.id}
                                  item={item}
                                  deleteArticle={deleteArticle}
+                                 callEditingArticle={callEditingArticle}
                               />
                            )
                         })
@@ -73,44 +125,44 @@ const AdminPanelBlog = (props) => {
 
             <Route path="/admin/blog/add-new-post/">
                <TextField
-                  id="newPostTitle"
                   label="Title"
                   fullWidth="true"
                   variant="outlined"
+                  onChange={handleTitleInput}
                />
                <br/><br/>
                <TextField
-                  id="newPostSummary"
                   label="Summary"
                   fullWidth="true"
                   variant="outlined"
+                  onChange={handleSummaryInput}
                />
                 <br/><br/>
                <TextField
-                  id="newPostDate"
                   type="date"
                   fullWidth="true"
                   variant="outlined"
+                  onChange={handleDateInput}
                />
                <br/><br/>
                <TextField
-                  id="newPostText"
                   label="Text"
                   fullWidth="true"
                   multiline
                   rows={10}
                   variant="outlined"
+                  onChange={handleTextInput}
                />
                <br/><br/>
                <Button variant="contained" color="primary" onClick={() => addNewArticle()}>Publish post</Button>
             </Route>
 
-            <Route path="/admin/blog/:name"
-               render={(props2) =>
+            <Route path="/admin/blog/:id"
+               render={() =>
                   <APBlogItemEdit 
                      articles={props.articles}
+                     article={article}
                      changeArticles={props.changeArticles}
-                     general={props2}
                   />
                }
             />
@@ -119,4 +171,4 @@ const AdminPanelBlog = (props) => {
    );
 }
 
-export default AdminPanelBlog;
+export default APBlog;

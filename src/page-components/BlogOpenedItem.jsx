@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PostPage = (props) => {
+const BlogOpenedItem = (props) => {
    return (
       <section className="section post">
          <div className="wrapper">
@@ -22,4 +22,4 @@ const PostPage = (props) => {
    );
 }
 
-export default PostPage;
+export default BlogOpenedItem;

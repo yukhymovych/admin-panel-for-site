@@ -18,10 +18,12 @@ const HomePage = (props) => {
          <PortfolioSection
             portfolio={props.portfolio}
             portfolioBtn={props.portfolioBtn}
+            showBtn={props.showBtn}
          />
          <BlogSection 
             articles={props.articles}
             blogBtn={props.blogBtn}
+            showBtn={props.showBtn}
          />
       </>
    );
