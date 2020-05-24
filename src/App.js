@@ -21,19 +21,19 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
    body {
-      background: ${props => props.theme.mode === 'dark' ? '#444' : 'white'};
-      color: ${props => props.theme.mode === 'dark' ? '#d7d7d7' : '#444'};
+      background: ${props => props.theme.mode === 'dark' ? '#17171A' : 'white'};
+      color: ${props => props.theme.mode === 'dark' ? '#d7d7d7' : '#17171A'};
    }
    .section--darker{
-      background-color: ${props => props.theme.mode === 'dark' ? '#666' : 'rgb(245, 245, 245)'};
+      background-color: ${props => props.theme.mode === 'dark' ? '#1f1f22' : 'rgb(245, 245, 245)'};
    }
    .section__btn{
-      border: 3px solid ${props => props.theme.mode === 'dark' ? 'white' : '#444'};
-      color: ${props => props.theme.mode === 'dark' ? 'white' : '#444'};
+      border: 3px solid ${props => props.theme.mode === 'dark' ? 'white' : '#17171A'};
+      color: ${props => props.theme.mode === 'dark' ? 'white' : '#17171A'};
    }
    .section__btn:hover{
-      background-color: ${props => props.theme.mode === 'dark' ? 'white' : '#444'};
-      color: ${props => props.theme.mode === 'dark' ? '#444' : 'white'};
+      background-color: ${props => props.theme.mode === 'dark' ? 'white' : '#17171A'};
+      color: ${props => props.theme.mode === 'dark' ? '#17171A' : 'white'};
    }
    h1, h2, h3, p, 
    .header__logo, 
@@ -41,28 +41,32 @@ const GlobalStyle = createGlobalStyle`
    .blog__item-link,
    .admin__link,
    .post__date{
-      color: ${props => props.theme.mode === 'dark' ? '#d7d7d7' : '#444'};
+      color: ${props => props.theme.mode === 'dark' ? '#d7d7d7' : '#17171A'};
    }
    .admin__wrapper{
-      background: ${props => props.theme.mode === 'dark' ? '#444' : 'white'};
+      background: ${props => props.theme.mode === 'dark' ? '#17171A' : 'white'};
    }
    .admin__sidebar{
-      border: 1px solid rgba(0,0,0,0.2);
+      border: 1px solid ${props => props.theme.mode === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'};
    }
    .admin__link:hover{
       background-color: rgba(0,0,0,0.05);
    }
    .blog__item{
-      background-color: ${props => props.theme.mode === 'dark' ? '#444' : 'white'};
+      background-color: ${props => props.theme.mode === 'dark' ? '#17171A' : 'white'};
    }
    header{
-      background: ${props => props.theme.mode === 'dark' ? '#444' : 'white'};
+      background: ${props => props.theme.mode === 'dark' ? '#17171A' : 'white'};
    }
    .MuiInputBase-input, .MuiFormLabel-root{
       color: ${props => props.theme.mode === 'dark' ? '#d7d7d7' : 'initial'} !important;
    }
    .MuiOutlinedInput-notchedOutline{
       border-color: ${props => props.theme.mode === 'dark' ? '#d7d7d7' : 'silver'} !important;
+   }
+   .admin__portfolio-item,
+   .admin__blog-item{
+      border-bottom: 1px solid ${props => props.theme.mode === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'} ;
    }
 `;
 

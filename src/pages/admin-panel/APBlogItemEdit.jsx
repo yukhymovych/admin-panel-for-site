@@ -70,6 +70,7 @@ const APBlogItemEdit = (props) => {
       <div className="admin__item">
          <>
             <TextField
+               className="admin__textfield--spacing"
                label="Title"
                rows={2}
                defaultValue={props.article.header}
@@ -78,6 +79,7 @@ const APBlogItemEdit = (props) => {
                onChange={handleTitleInput}
             />
             <TextField
+               className="admin__textfield--spacing"
                label="Summary"
                rows={4}
                defaultValue={props.article.summary}
@@ -86,6 +88,7 @@ const APBlogItemEdit = (props) => {
                onChange={handleSummaryInput}
             />
             <TextField
+               className="admin__textfield--spacing"
                label="Date"
                rows={2}
                defaultValue={props.article.date}
@@ -94,6 +97,7 @@ const APBlogItemEdit = (props) => {
                onChange={handleDateInput}
             />
             <TextField
+               className="admin__textfield--spacing"
                label="Text"
                multiline
                rows={15}

@@ -9,9 +9,9 @@ const PortfolioOpenedItem = (props) => {
                   if (item.title === props.general.match.params.name){
                      return(
                         <>
-                           <h1>{item.title}</h1>
-                           <img src={item.imgSrc} alt=""/>
-                           <p>{item.description}</p>
+                           <h1 className="portfolio__header">{item.title}</h1>
+                           <img className="portfolio__img" src={item.imgSrc} alt=""/>
+                           <p className="portfolio__p">{item.description}</p>
                         </>
                      )
                   }

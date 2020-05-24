@@ -61,7 +61,6 @@ const AdminPanel = (props) => {
          <div className="wrapper admin__wrapper">
             <div className="admin__sidebar">
                <p className="admin__naming">Admin Panel</p>
-               <span className="admin__dark-mode">Dark mode</span>
                <Switcher
                   checked={darkMode.state}
                   onChange={handleChange}
@@ -69,6 +68,7 @@ const AdminPanel = (props) => {
                   name="darkModeSwitcher"
                   inputProps={{ 'aria-label': 'primary checkbox' }}
                />
+               <span className="admin__dark-mode">Dark mode</span>
                <Link className="link admin__link" to="/admin/hero">Hero</Link>
                <Link className="link admin__link" to="/admin/about">About</Link>
                <Link className="link admin__link" to="/admin/portfolio">Portfolio</Link>
@@ -77,7 +77,12 @@ const AdminPanel = (props) => {
             </div>
             <div className="admin__main">
                <Switch>
-                  <Route exact path="/admin/hero">
+                  <Route exact path="/admin">
+                     <div className="admin__item">
+                        <p className="p">Welcome to demo admin panel. <br/>Click on tabs at left sidebar to move to needed website section for editing.</p>
+                     </div>
+                  </Route>
+                  <Route path="/admin/hero">
                      <div className="admin__item">
                         <div className="admin__item-inner">
                            <h3 className="admin__header">Hero</h3>

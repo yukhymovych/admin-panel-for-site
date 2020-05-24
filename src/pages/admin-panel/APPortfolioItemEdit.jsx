@@ -61,6 +61,7 @@ const APPortfolioItemEdit = (props) => {
             <img src="/img/5.jpg" alt="" onClick={ (e) => {handleImg(e.target.getAttribute("src"))} }/>
          </div>
          <TextField
+            className="admin__textfield--spacing"
             label="Title"
             rows={2}
             defaultValue={props.portfolioItem.title}
@@ -69,6 +70,7 @@ const APPortfolioItemEdit = (props) => {
             onChange={handleTitleInput}
          />
          <TextField
+            className="admin__textfield--spacing"
             label="Description"
             rows={4}
             defaultValue={props.portfolioItem.description}
