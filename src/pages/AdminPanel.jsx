@@ -79,7 +79,8 @@ const AdminPanel = (props) => {
                <Switch>
                   <Route exact path="/admin">
                      <div className="admin__item">
-                        <p className="p">Welcome to demo admin panel. <br/>Click on tabs at left sidebar to move to needed website section for editing.</p>
+                        <h2 className="h2">Welcome to demo admin panel</h2>
+                        <p className="p">Click on tabs at left sidebar to move to needed website section for content editing.</p>
                      </div>
                   </Route>
                   <Route path="/admin/hero">
