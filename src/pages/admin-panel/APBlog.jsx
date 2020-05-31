@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import APBlogItemEdit from './APBlogItemEdit';
 import APBlogItem from './APBlogItem';
 import {
-   BrowserRouter as Router,
    Switch,
    Route,
    Link
@@ -98,76 +97,74 @@ const APBlog = (props) => {
    }
 
    return (
-      <Router>
-         <Switch>
-            <Route exact path="/admin/blog">
-               <div className="admin__item">
-                  <div className="admin__item-inner">
-                     <h3 className="admin__header">Blog</h3>
-                     {
-                        articles.map((item) => {
-                           return (
-                              <APBlogItem
-                                 key={item.id}
-                                 item={item}
-                                 deleteArticle={deleteArticle}
-                                 callEditingArticle={callEditingArticle}
-                              />
-                           )
-                        })
-                     }
-                  </div>  
-               </div>
-               <Link className="link" to="/admin/blog/add-new-post/">
-                  <Button variant="contained" color="primary">Add new post</Button>
-               </Link>
-            </Route>
+      <Switch>
+         <Route exact path="/admin/blog">
+            <div className="admin__item">
+               <div className="admin__item-inner">
+                  <h3 className="admin__header">Blog</h3>
+                  {
+                     articles.map((item) => {
+                        return (
+                           <APBlogItem
+                              key={item.id}
+                              item={item}
+                              deleteArticle={deleteArticle}
+                              callEditingArticle={callEditingArticle}
+                           />
+                        )
+                     })
+                  }
+               </div>  
+            </div>
+            <Link className="link" to="/admin/blog/add-new-post/">
+               <Button variant="contained" color="primary">Add new post</Button>
+            </Link>
+         </Route>
 
-            <Route path="/admin/blog/add-new-post/">
-               <TextField
-                  label="Title"
-                  fullWidth="true"
-                  variant="outlined"
-                  onChange={handleTitleInput}
-               />
-               <br/><br/>
-               <TextField
-                  label="Summary"
-                  fullWidth="true"
-                  variant="outlined"
-                  onChange={handleSummaryInput}
-               />
-                <br/><br/>
-               <TextField
-                  type="date"
-                  fullWidth="true"
-                  variant="outlined"
-                  onChange={handleDateInput}
-               />
-               <br/><br/>
-               <TextField
-                  label="Text"
-                  fullWidth="true"
-                  multiline
-                  rows={10}
-                  variant="outlined"
-                  onChange={handleTextInput}
-               />
-               <br/><br/>
-               <Button variant="contained" color="primary" onClick={() => addNewArticle()}>Publish post</Button>
-            </Route>
-
-            <Route path="/admin/blog/:id"
-               render={() =>
-                  <APBlogItemEdit 
-                     articles={props.articles}
-                     article={article}
-                     changeArticles={props.changeArticles}
-                  />
-               }
+         <Route path="/admin/blog/add-new-post/">
+            <TextField
+               label="Title"
+               fullWidth="true"
+               variant="outlined"
+               onChange={handleTitleInput}
             />
-         </Switch>
-      </Router>
+            <br/><br/>
+            <TextField
+               label="Summary"
+               fullWidth="true"
+               variant="outlined"
+               onChange={handleSummaryInput}
+            />
+               <br/><br/>
+            <TextField
+               type="date"
+               fullWidth="true"
+               variant="outlined"
+               onChange={handleDateInput}
+            />
+            <br/><br/>
+            <TextField
+               label="Text"
+               fullWidth="true"
+               multiline
+               rows={10}
+               variant="outlined"
+               onChange={handleTextInput}
+            />
+            <br/><br/>
+            <Button variant="contained" color="primary" onClick={() => addNewArticle()}>Publish post</Button>
+         </Route>
+
+         <Route path="/admin/blog/:id"
+            render={() =>
+               <APBlogItemEdit 
+                  articles={props.articles}
+                  article={article}
+                  changeArticles={props.changeArticles}
+               />
+            }
+         />
+      </Switch>
    );
 }
 
