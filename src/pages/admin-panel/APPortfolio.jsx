@@ -14,9 +14,15 @@ import {
    TextField
 } from '@material-ui/core';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setPortfolio } from '../../store/portfolio/actions';
 
-const APPortfolio = (props) => {
-   const [portfolio, setPortfolio] = useState(props.portfolio);
+
+const APPortfolio = () => {
+   const store = useSelector(store => store);
+   const dispatch = useDispatch();
+
+   const [portfolio, setTempPortfolio] = useState(store.portfolio);
    const [portfolioItem, setPortfolioItem] = useState(0);
    const [newPortfolio, setNewPortfolio] = useState({
       id: createId(),
@@ -53,33 +59,42 @@ const APPortfolio = (props) => {
    }
 
    const deletePortfolioItem = (portfolio) => {
-      let newArray = [...props.portfolio];
+      let newArray = [...store.portfolio];
 
       for (let i = 0; i < newArray.length; i++) {
          if (newArray[i].id === portfolio.id) {
             newArray.splice(i, 1);
 
-            setPortfolio(newArray);
-            props.changePortfolio(newArray);
+            setTempPortfolio(newArray);
+            dispatch(setPortfolio(newArray));
          }
       }
    }
 
    const addNewPortfolioItem = () => {
-      let newArray = [...props.portfolio];
+      let newArray = [...store.portfolio];
 
       newArray.push(newPortfolio);
       
-      setPortfolio(newArray);
-      props.changePortfolio(newArray);
+      setTempPortfolio(newArray);
+      dispatch(setPortfolio(newArray));
    }
 
    const callEditingPortfolioItem = (itemId) => {
       portfolio.map((item) => {
          if(item.id === itemId) {
             setPortfolioItem(item);
+            return 0;
+         }
+         else{
+            return 0;
          }
       });
+   }
+
+   const changePortfolio = (updatedPortfolio) => {
+      setTempPortfolio(updatedPortfolio);
+      dispatch(setPortfolio(updatedPortfolio));
    }
 
    return (
@@ -136,9 +151,9 @@ const APPortfolio = (props) => {
          <Route path="/admin/portfolio/:id"
             render={() =>
                <APPortfolioItemEdit 
-                  portfolio={props.portfolio}
+                  portfolio={store.portfolio}
                   portfolioItem={portfolioItem}
-                  changePortfolio={props.changePortfolio}
+                  changePortfolio={changePortfolio}
                />
             }
          />

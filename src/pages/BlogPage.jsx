@@ -2,20 +2,22 @@ import BlogSection from '../page-components/BlogSection';
 import BlogOpenedItem from '../page-components/BlogOpenedItem.jsx';
 
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {
    Switch,
    Route
 } from "react-router-dom";
 
-const BlogPage = (props) => {
+const BlogPage = () => {
+   const store = useSelector(store => store);
+
    return (
       <Switch>
          <Route exact path="/blog/"
             render={() =>
                <BlogSection 
-                  articles={props.articles}
-                  blogBtn={props.blogBtn}
+                  blogBtn={store.additionalInfo.blogBtn}
                />
             }
          />
@@ -23,7 +25,6 @@ const BlogPage = (props) => {
          <Route path="/blog/:name"
             render={(props2) =>
                <BlogOpenedItem 
-                  articles={props.articles}
                   general={props2}
                />
             }

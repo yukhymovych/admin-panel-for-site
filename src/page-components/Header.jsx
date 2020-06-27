@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
-const Header = (props) => {
+
+const Header = () => {
+   const store = useSelector(store => store);
 
    const [menuOpen, setMenuOpen] = useState("");
 
@@ -17,7 +20,7 @@ const Header = (props) => {
    return (
       <header>
          <div className="wrapper">
-            <Link className="link header__logo" to="/">{props.headerLogoText}</Link>
+            <Link className="link header__logo" to="/">{store.additionalInfo.headerLogoText}</Link>
             <nav className={menuOpen}>
                <ul>
                   <li><Link to="/">Home</Link></li>

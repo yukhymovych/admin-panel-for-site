@@ -1,11 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const HeroSection = (props) => {
+const HeroSection = () => {
+   const store = useSelector(store => store);
+   
    return (
       <section className="section hero">
          <div className="wrapper">
-            <h1>{props.header}</h1>
-            <p>{props.subheader}</p>
+            <h1>{store.hero.homeHeader}</h1>
+            <p>{store.hero.homeSubheader}</p>
          </div>
       </section>
    );

@@ -14,10 +14,16 @@ import {
    TextField
 } from '@material-ui/core';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setArticles} from '../../store/articles/actions';
 
-const APBlog = (props) => {
-   const [articles, setArticles] = useState(props.articles);
-   const [article, setArticle] = useState(0);
+
+const APBlog = () => {
+   const store = useSelector(store => store);
+   const dispatch = useDispatch();
+
+   const [articles, setTempArticles] = useState(store.articles);
+   const [article, setTempArticle] = useState(0);
    const [newArticle, setNewArticle] = useState({
       id: createId(),
       header: "",
@@ -67,33 +73,43 @@ const APBlog = (props) => {
    }
 
    const deleteArticle = (article) => {
-      let newArray = [...props.articles];
+      let newArray = [...store.articles];
 
       for (let i = 0; i < newArray.length; i++) {
          if (newArray[i].id === article.id) {
             newArray.splice(i, 1);
 
-            setArticles(newArray);
-            props.changeArticles(newArray);
+            setTempArticles(newArray);
+            dispatch(setArticles(newArray));
          }
       }
+      
    }
 
    const addNewArticle = () => {
-      let newArray = [...props.articles];
+      let newArray = [...store.articles];
 
       newArray.push(newArticle);
       
-      setArticles(newArray);
-      props.changeArticles(newArray);
+      setTempArticles(newArray);
+      dispatch(setArticles(newArray));
    }
 
    const callEditingArticle = (articleId) => {
       articles.map((item) => {
          if(item.id === articleId) {
-            setArticle(item);
+            setTempArticle(item);
+            return 0;
+         }
+         else{
+            return 0;
          }
       });
+   }
+
+   const changeArticles = (updatedArticles) => {
+      setTempArticles(updatedArticles);
+      dispatch(setArticles(updatedArticles));
    }
 
    return (
@@ -158,9 +174,9 @@ const APBlog = (props) => {
          <Route path="/admin/blog/:id"
             render={() =>
                <APBlogItemEdit 
-                  articles={props.articles}
+                  articles={store.articles}
                   article={article}
-                  changeArticles={props.changeArticles}
+                  changeArticles={changeArticles}
                />
             }
          />

@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const BlogSection = (props) => {
+   const store = useSelector(store => store);
+
    const showBtn = () => {
       if (props.showBtn) {
          return (
-            <Link className="link section__btn" to="/blog">{props.blogBtn}</Link>
+            <Link className="link section__btn" to="/blog">{store.additionalInfo.blogBtn}</Link>
          );
       }
    }
@@ -16,9 +19,9 @@ const BlogSection = (props) => {
             <h2>Blog</h2>
             <div className="blog__container">
                {
-                  props.articles.map((item) => {
+                  store.articles.map((item) => {
                      return(
-                        <div className="blog__item">
+                        <div className="blog__item" key={item.id}>
                            <h3>{item.header}</h3>
                            <p className="blog__item-date">{item.date}</p>
                            <p className="blog__item-description">{item.summary}</p>

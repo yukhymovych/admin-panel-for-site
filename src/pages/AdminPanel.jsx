@@ -13,10 +13,16 @@ import {
    Switch as Switcher
 } from '@material-ui/core';
 
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setAbout } from '../store/about/actions';
+import { setAdditionalInfo } from '../store/additionalInfo/actions';
+import { setHero } from '../store/hero/actions';
 
 
 const AdminPanel = (props) => {
+   const store = useSelector(store => store);
+   const dispatch = useDispatch();
+
    const homeHeroHeader = useRef();
    const homeHeroSubheader = useRef();
    const aboutHeader = useRef();
@@ -41,7 +47,7 @@ const AdminPanel = (props) => {
          homeSubheader: homeHeroSubheader.current.childNodes[1].childNodes[0].value,
       };
 
-      props.changeHero(newHero);
+      dispatch(setHero(newHero));
    }
 
    const saveAbout = () => {
@@ -50,7 +56,7 @@ const AdminPanel = (props) => {
          aboutText: aboutText.current.childNodes[1].childNodes[0].value
       };
 
-      props.changeAbout(newAbout);
+      dispatch(setAbout(newAbout));
    }
 
    const saveAdditionalInfo = () => {
@@ -61,7 +67,7 @@ const AdminPanel = (props) => {
          blogBtn: blogBtn.current.childNodes[1].childNodes[0].value
       };
 
-      props.changeAdditionalInfo(newAdditionalInfo);
+      dispatch(setAdditionalInfo(newAdditionalInfo));
    }
 
    return (
@@ -90,6 +96,7 @@ const AdminPanel = (props) => {
                      <p className="p">Click on tabs at left sidebar to move to needed website section for content editing.</p>
                   </div>
                </Route>
+               
                <Route path="/admin/hero">
                   <div className="admin__item">
                      <div className="admin__item-inner">
@@ -97,7 +104,7 @@ const AdminPanel = (props) => {
                         <TextField
                            ref={homeHeroHeader}
                            label="Header"
-                           defaultValue={props.hero.homeHeader}
+                           defaultValue={store.hero.homeHeader}
                            key={1}
                            fullWidth="true"
                            variant="outlined"
@@ -108,7 +115,7 @@ const AdminPanel = (props) => {
                            label="Subheader"
                            multiline
                            rows={10}
-                           defaultValue={props.hero.homeSubheader}
+                           defaultValue={store.hero.homeSubheader}
                            key={2}
                            fullWidth="true"
                            variant="outlined"
@@ -126,7 +133,7 @@ const AdminPanel = (props) => {
                         <TextField
                            ref={aboutHeader}
                            label="Header"
-                           defaultValue={props.about.aboutHeader}
+                           defaultValue={store.about.aboutHeader}
                            key={3}
                            fullWidth="true"
                            variant="outlined"
@@ -137,7 +144,7 @@ const AdminPanel = (props) => {
                            label="Subheader"
                            multiline
                            rows={10}
-                           defaultValue={props.about.aboutText}
+                           defaultValue={store.about.aboutText}
                            key={4}
                            fullWidth="true"
                            variant="outlined"
@@ -150,20 +157,13 @@ const AdminPanel = (props) => {
 
                <Route path="/admin/portfolio" 
                   render={() => 
-                     <APPortfolio
-                        portfolio={props.portfolio}
-                        changePortfolio={props.changePortfolio}
-                        createId={props.createId}
-                     />
+                     <APPortfolio />
                   }
                />
 
                <Route path="/admin/blog" 
                   render={() => 
-                     <APBlog 
-                        articles={props.articles}
-                        changeArticles={props.changeArticles}
-                     />
+                     <APBlog />
                   }
                />
 
@@ -174,7 +174,7 @@ const AdminPanel = (props) => {
                         <TextField
                            ref={headerLogoText}
                            label="Website logo text"
-                           defaultValue={props.additionalInfo.headerLogoText}
+                           defaultValue={store.additionalInfo.headerLogoText}
                            key={5}
                            fullWidth="true"
                            variant="outlined"
@@ -183,7 +183,7 @@ const AdminPanel = (props) => {
                         <TextField
                            ref={footerText}
                            label="Footer text"
-                           defaultValue={props.additionalInfo.footerText}
+                           defaultValue={store.additionalInfo.footerText}
                            key={6}
                            fullWidth="true"
                            variant="outlined"
@@ -192,7 +192,7 @@ const AdminPanel = (props) => {
                         <TextField
                            ref={portfolioBtn}
                            label="Portfolio button text"
-                           defaultValue={props.additionalInfo.portfolioBtn}
+                           defaultValue={store.additionalInfo.portfolioBtn}
                            key={7}
                            variant="outlined"
                         />
@@ -200,7 +200,7 @@ const AdminPanel = (props) => {
                         <TextField
                            ref={blogBtn}
                            label="Blog button text"
-                           defaultValue={props.additionalInfo.blogBtn}
+                           defaultValue={store.additionalInfo.blogBtn}
                            key={8}
                            variant="outlined"
                         />

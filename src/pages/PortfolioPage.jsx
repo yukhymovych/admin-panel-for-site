@@ -7,23 +7,19 @@ import {
    Route
 } from "react-router-dom";
 
-const PortfolioPage = (props) => {
+const PortfolioPage = () => {
    return (
       <Switch>
          <Route exact path="/portfolio/"
             render={() =>
-               <PortfolioSection 
-                  portfolio={props.portfolio}
-                  portfolioBtn={props.portfolioBtn}
-               />
+               <PortfolioSection />
             }
          />
 
          <Route path="/portfolio/:name"
-            render={(props2) =>
+            render={(props) =>
                <PortfolioOpenedItem 
-                  portfolio={props.portfolio}
-                  general={props2}
+                  general={props}
                />
             }
          />

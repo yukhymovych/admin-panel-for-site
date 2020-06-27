@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const Footer = (props) => {
+const Footer = () => {
+   const store = useSelector(store => store);
+
    return (
       <footer>
          <div className="wrapper">
-            <p>{props.footerText}</p>
+            <p>{store.additionalInfo.footerText}</p>
          </div>
       </footer>
    );
