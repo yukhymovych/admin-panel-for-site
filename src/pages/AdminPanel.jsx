@@ -106,7 +106,7 @@ const AdminPanel = (props) => {
                            label="Header"
                            defaultValue={store.hero.homeHeader}
                            key={1}
-                           fullWidth="true"
+                           fullWidth={true}
                            variant="outlined"
                         />
                         <br/><br/>
@@ -117,7 +117,7 @@ const AdminPanel = (props) => {
                            rows={10}
                            defaultValue={store.hero.homeSubheader}
                            key={2}
-                           fullWidth="true"
+                           fullWidth={true}
                            variant="outlined"
                         />
                         <br/><br/>
@@ -135,7 +135,7 @@ const AdminPanel = (props) => {
                            label="Header"
                            defaultValue={store.about.aboutHeader}
                            key={3}
-                           fullWidth="true"
+                           fullWidth={true}
                            variant="outlined"
                         />
                         <br/><br/>
@@ -146,7 +146,7 @@ const AdminPanel = (props) => {
                            rows={10}
                            defaultValue={store.about.aboutText}
                            key={4}
-                           fullWidth="true"
+                           fullWidth={true}
                            variant="outlined"
                         />
                         <br/><br/>
@@ -176,7 +176,7 @@ const AdminPanel = (props) => {
                            label="Website logo text"
                            defaultValue={store.additionalInfo.headerLogoText}
                            key={5}
-                           fullWidth="true"
+                           fullWidth={true}
                            variant="outlined"
                         />
                         <br/><br/>
@@ -185,7 +185,7 @@ const AdminPanel = (props) => {
                            label="Footer text"
                            defaultValue={store.additionalInfo.footerText}
                            key={6}
-                           fullWidth="true"
+                           fullWidth={true}
                            variant="outlined"
                         />
                         <br/><br/>

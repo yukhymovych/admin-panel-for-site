@@ -140,28 +140,28 @@ const APBlog = () => {
          <Route path="/admin/blog/add-new-post/">
             <TextField
                label="Title"
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleTitleInput}
             />
             <br/><br/>
             <TextField
                label="Summary"
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleSummaryInput}
             />
                <br/><br/>
             <TextField
                type="date"
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleDateInput}
             />
             <br/><br/>
             <TextField
                label="Text"
-               fullWidth="true"
+               fullWidth={true}
                multiline
                rows={10}
                variant="outlined"

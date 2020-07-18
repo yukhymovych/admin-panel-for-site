@@ -74,7 +74,7 @@ const APBlogItemEdit = (props) => {
                label="Title"
                rows={2}
                defaultValue={props.article.header}
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleTitleInput}
             />
@@ -83,7 +83,7 @@ const APBlogItemEdit = (props) => {
                label="Summary"
                rows={4}
                defaultValue={props.article.summary}
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleSummaryInput}
             />
@@ -92,7 +92,7 @@ const APBlogItemEdit = (props) => {
                label="Date"
                rows={2}
                defaultValue={props.article.date}
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleDateInput}
             />
@@ -102,7 +102,7 @@ const APBlogItemEdit = (props) => {
                multiline
                rows={15}
                defaultValue={props.article.text}
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleTextInput}
             />

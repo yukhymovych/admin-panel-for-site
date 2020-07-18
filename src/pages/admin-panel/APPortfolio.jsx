@@ -133,14 +133,14 @@ const APPortfolio = () => {
             <br/><br/>
             <TextField
                label="Title"
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleTitleInput}
             />
                <br/><br/>
             <TextField
                label="Description"
-               fullWidth="true"
+               fullWidth={true}
                variant="outlined"
                onChange={handleDescriptionInput}
             />

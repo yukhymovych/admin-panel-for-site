@@ -65,7 +65,7 @@ const APPortfolioItemEdit = (props) => {
             label="Title"
             rows={2}
             defaultValue={props.portfolioItem.title}
-            fullWidth="true"
+            fullWidth={true}
             variant="outlined"
             onChange={handleTitleInput}
          />
@@ -74,7 +74,7 @@ const APPortfolioItemEdit = (props) => {
             label="Description"
             rows={4}
             defaultValue={props.portfolioItem.description}
-            fullWidth="true"
+            fullWidth={true}
             variant="outlined"
             onChange={handleDescriptionInput}
          />
